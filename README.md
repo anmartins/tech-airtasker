@@ -12,5 +12,7 @@ My first approach received a thread pool and updated the available tokens after 
 
 I'm assuming that the testers can download the code and run it locally, as I've created two ways of operating. One runs through a thread pool, while the other only uses the main thread.
 
-The app assumes 3 arguments period, requestLimit, time between requests and these can be configured on the main function.
+The app assumes 3 arguments: period, requestLimit, time between requests and these can be configured on the main function.
+
+The request logic is mocked up only at the app level. The rate limiter is agnostic of it's usages.
 
