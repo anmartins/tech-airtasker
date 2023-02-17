@@ -10,8 +10,8 @@ import java.util.concurrent.TimeUnit
 fun main() {
     printMessage("NOW ${Time.from(Instant.now())}")
 
-    val period = 10 * 1000L  // in millis
-    val limit = 5
+    val period = 60 * 60 * 1 * 1000L  // one 1h has 60m, 1m has 60s, one second has 1000ms
+    val limit = 100
     val rt: RateLimiter = LazyRefillCountRateLimiter(limit, period)
 
 //    runWithThreadPool(rt, limit, period)
