@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 fun main() {
     printMessage("NOW ${Time.from(Instant.now())}")
 
-    val period = 10 * 1000L
+    val period = 10 * 1000L  // in millis
     val limit = 5
     val rt: RateLimiter = LazyRefillCountRateLimiter(limit, period)
 
@@ -41,9 +41,8 @@ private fun printMessage(message: String) {
 
 private fun RateLimiter.executeCommand(key: String) = this.enter(key).let(::buildMessage).let(::printMessage)
 
-private fun runLinear(rt: RateLimiter, limit: Int) {
+private fun runLinear(rt: RateLimiter, limit: Int, mismatchInMillis: Long = 333L) {
     val requests = limit * 10
-    val mismatchInMillis = 333L
 
     for (i in 0 until requests) {
         rt.executeCommand("andre")
@@ -55,10 +54,10 @@ private fun runWithThreadPool(
     rt: RateLimiter,
     limit: Int,
     period: Long,
+    mismatchInMillis: Long = 333L
 ) {
     val requests = limit * 10
     val pool = Executors.newScheduledThreadPool(5);
-    val mismatchInMillis = 333L
 
     for (i in 0 until requests) {
         pool.scheduleAtFixedRate({ rt.executeCommand("andre") }, 0, period, TimeUnit.MILLISECONDS)
