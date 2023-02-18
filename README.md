@@ -18,3 +18,11 @@ The request logic is mocked up only at the app level. The rate limiter is agnost
 I'm assuming that the testers can download the code and run it locally, as I've created two ways of operating. One runs through a thread pool, while the other only uses the main thread.
 
 The app assumes 3 arguments: period, requestLimit, time between requests and these can be configured on the main function available at the app.kt file.
+
+#### Tools
+ - SDKMAN // https://sdkman.io/install
+ 
+ I've installed gradle and jvm through SDKMAN, with `sdk install gradle 8.0` and `sdk install 8.0.352-amzn`
+ 
+ I've used jetbrains IntelIj to build and execute the app, but the same can be achieved using gradle and cmd, with `gradle run`. 
+ 
